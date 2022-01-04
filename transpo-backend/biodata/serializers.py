@@ -11,6 +11,8 @@ UserProfileSerializer :
 """
 
 class UserProfileSerializer(serializers.ModelSerializer):
-    model = UserProfile 
-    # all fields in UserProfile db such as user name age 
-    fields = "__all__"
+  
+    class Meta:
+      model = UserProfile 
+      # all fields in UserProfile db such as user name age 
+      fields = "__all__"

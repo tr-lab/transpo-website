@@ -7,7 +7,7 @@ from rest_framework import serializers
 
 from biodata.serializers import UserProfileSerializer
 from biodata.models import UserProfile
-
+import pdb 
 
 User = get_user_model()
 
@@ -35,6 +35,7 @@ class UserProfileSerializerTest(TestCase):
         and the right data is saved 
         returns 
         """ 
+        # pdb.set_trace()
         serializer = UserProfileSerializer(data=self.user_profile_data)
         self.assertTrue(serializer.is_valid())
 
