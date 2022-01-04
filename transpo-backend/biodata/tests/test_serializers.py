@@ -23,11 +23,10 @@ class UserProfileSerializerTest(TestCase):
             "status": "is active",
             "date_created": "13/24/2023",
             "date_last_edited": "15/14/2022",
-            "otp_code":  "7653",
+            "otp_code":  7653,
         }
         
         self.required_error_msg = "This field is required."
-
 
     def test_validation_true(self):
         """
@@ -49,6 +48,88 @@ class UserProfileSerializerTest(TestCase):
         saved_user_profile = UserProfile.objects.get(username=self.user_profile_data["username"])
         self.assertEqual(saved_user_profile, user_profile)
 
+
+    def test_validation_false_for_required_missing(self):
+        """
+        Test to see if the serializer is valid when other fields or parts of data are missing,
+        returns:
+        """
+        # Missing username 
+        data = self.user_profile_data.copy()
+        del data["username"]
+
+        serializer = UserProfileSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEqual(serializer.errors.get("username")[0], self.required_error_msg)
+
+        with self.assertRaises(AssertionError):
+            serializer.save()
+
+        # Missing age 
+        data = self.user_profile_data.copy()
+        del data["age"]
+
+        serializer = UserProfileSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEqual(serializer.errors.get("age")[0], self.required_error_msg)
+
+        with self.assertRaises(AssertionError):
+            serializer.save()
+        
+        # Missing email_address 
+        data = self.user_profile_data.copy()
+        del data["email_address"]
+
+        serializer = UserProfileSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEqual(serializer.errors.get("email_address")[0], self.required_error_msg)
+
+        with self.assertRaises(AssertionError):
+            serializer.save()
+        
+        # Missing phone_number 
+        data = self.user_profile_data.copy()
+        del data["phone_number"]
+
+        serializer = UserProfileSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEqual(serializer.errors.get("phone_number")[0], self.required_error_msg)
+
+        with self.assertRaises(AssertionError):
+            serializer.save()
+
+        # Missing date_created 
+        data = self.user_profile_data.copy()
+        del data["date_created"]
+
+        serializer = UserProfileSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEqual(serializer.errors.get("date_created")[0], self.required_error_msg)
+
+        with self.assertRaises(AssertionError):
+            serializer.save()
+        
+        # Missing date_last_edited 
+        data = self.user_profile_data.copy()
+        del data["date_last_edited"]
+
+        serializer = UserProfileSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEqual(serializer.errors.get("date_last_edited")[0], self.required_error_msg)
+
+        with self.assertRaises(AssertionError):
+            serializer.save()
+
+        # Missing otp_code 
+        data = self.user_profile_data.copy()
+        del data["otp_code"]
+
+        serializer = UserProfileSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertEqual(serializer.errors.get("otp_code")[0], self.required_error_msg)
+
+        with self.assertRaises(AssertionError):
+            serializer.save()
          
 
 
