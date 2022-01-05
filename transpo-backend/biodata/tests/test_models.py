@@ -20,7 +20,7 @@ class UserProfileTest(TestCase):
             "status": "is active",
             "date_created": "13/24/2023",
             "date_last_edited": "15/14/2022",
-            "otp_code":  "7653",
+            "otp_code":  7653,
             
         }
     

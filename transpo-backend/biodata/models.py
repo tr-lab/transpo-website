@@ -1,3 +1,4 @@
+# from typing_extensions import Required
 from django.db import models
 from django.db.models.fields import EmailField
 
@@ -13,7 +14,7 @@ class UserProfile(models.Model):
     status = models.CharField(max_length=500)
     date_created = models.CharField(max_length=600)
     date_last_edited = models.CharField(max_length=500)
-    otp_code = models.CharField(max_length=7)
+    otp_code = models.IntegerField()
     # pass
 
 
